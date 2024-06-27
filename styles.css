@@ -1,0 +1,581 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Monospace", "Courier New", monospace ,"Noto Sans Thai";
+    font-weight: lighter;
+}
+body{
+    background-color: black;  
+    color: aliceblue;
+    scroll-behavior: smooth;
+}
+.firstpage{
+    background: url(haise.jpg) no-repeat;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 10%;
+    /* background: rgba(0, 0, 0, .3); */
+    /* backdrop-filter: blur(50px); */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.header::before{   /* navbar */
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .3); 
+    z-index: -1;
+
+}
+.header::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(90deg,transparent,rgb(184, 184, 184),transparent);
+    transition: 1s;
+}
+.header:hover::after{
+    left: 100%;
+}
+.logo{
+    font-size: 2rem;
+    color:#fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+.logo:hover{
+    animation: wiggle 0.5s infinite;
+}
+@keyframes wiggle {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(5deg);
+    }
+    50% {
+      transform: rotate(-5deg);
+    }
+    75% {
+      transform: rotate(3deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+.navbar a{
+    
+    font-size: 1.3rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+}
+nav.navbar a:hover {
+    transition: .3s;
+    color: rgb(0, 0, 0);
+    background-color: rgb(199, 199, 199);
+}
+
+#check{
+    display: none;
+}
+.icons{
+    position: absolute;
+    right: 5%;
+    font-size: 2.8rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+@media (max-width: 992px){
+    .header{
+        padding: 1.3rem 5%;
+    }
+}
+@media (max-width: 768px){
+    .icons{
+        display: inline-flex;
+    }
+    #check:checked~.icons #menu-icon{
+        display: none;
+    }
+    .icons #close-icon{
+        display: none;
+    }
+
+    #check:checked~.icons #close-icon{
+        display: block;
+    }
+    .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(0, 0, 0, .3);
+        backdrop-filter: blur(50px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        overflow: hidden;
+        transition: .3s ease;
+    }
+    #check:checked~.navbar{
+        height: 18rem;     /* ความยาวnavbar บนโทรศัพท์ */ 
+    }
+    .navbar a{
+        display: block;
+        font-size: 1.1rem;
+        margin: 1.5rem 0;
+        text-align: center;
+        transform: translateY(-50px);
+        opacity: 0;
+
+        transition: .3s ease;
+    }
+    #check:checked~.navbar a{
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: calc(.15s * var(--i));
+    }
+    .service-item{
+        grid-template-columns: repeat(auto-fit,minmax(350px,auto));
+    }
+}
+
+/* เนื้อหา */
+section{
+    padding: 260px 10% 100px;
+}
+.hero-text h3, .hero-text h1, .hero-text h4 {
+    transition: font-size 1.5s ease; /* Apply transition effect */
+}
+
+.hero-text h3 {
+    color: rgb(255, 255, 255);
+    font-size: 0px; /* Initially set font-size to 0 */
+    margin-bottom: .5rem;
+}
+
+.hero-text h3.show {
+    font-size: 22px; /* Font size to transition to */
+}
+
+.hero-text h1 {
+    color:  rgb(131, 15, 15);
+    font-size: 0px; /* Initially set font-size to 0 */
+    margin-bottom: 2px;
+    letter-spacing: 2px;
+}
+
+.hero-text h1.show {
+    font-size: 50px; /* Font size to transition to */
+}
+
+.hero-text h4 {
+    color: rgb(131, 15, 15);
+    font-size: 0px; /* Initially set font-size to 0 */
+    word-spacing: 15px;
+    margin-bottom: .5rem;
+}
+
+.hero-text h4.show {
+    font-size: 25px; /* Font size to transition to */
+}
+
+
+.btn{
+    display: inline-block;
+    text-decoration: none;
+    padding: 16px 45px;
+    background: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
+    font-size: 22px;
+    font-weight: 800;
+    transition: all ease .50s;
+    border-radius: 20px;
+}
+.btn:hover{
+    transition: .3s;
+    color: rgb(131, 15, 15);
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.bubbles img{
+    width: 50px;
+    animation: bubble 7s linear infinite;
+}
+.bubbles{
+    opacity: 60%;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    bottom: -70px;
+}
+@keyframes bubble{
+    0%{
+        transform: translateY(0);
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    70%{
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(-80vh);
+        opacity: 0;
+    }
+}
+.bubbles img:nth-child(1){
+    animation-delay:2s;
+    width: 25px;
+}
+.bubbles img:nth-child(2){
+    animation-delay:1s;
+    width: 25px;
+}
+.bubbles img:nth-child(3){
+    animation-delay:3s;
+}
+.bubbles img:nth-child(4){
+    animation-delay:4.5s;
+}
+.bubbles img:nth-child(5){
+    animation-delay:3s;
+}
+.bubbles img:nth-child(6){
+    animation-delay:6s;
+}
+.bubbles img:nth-child(7){
+    animation-delay:7s;
+    width: 25px;
+}
+
+/* about */
+.about {
+    padding: 100;
+}
+
+.header.sticky{
+    padding: 15px 11%;
+    background: #000;
+    border-bottom:1px solid #4e5055;
+}
+.about{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,auto));
+    align-items: center;
+    gap: 4rem;
+}
+.about-img img{
+width: 100%;
+height: auto;
+border-radius: 20px;
+}
+.about-text h2{
+font-size: 40px;
+margin-bottom: 10px;
+font-weight: bold;
+}
+.about-text h5{
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+.about-text h5 span {
+    font-weight: bold;
+    color: rgb(131, 15, 15);
+}
+.about-text p{
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 1rem;
+}
+/* service */
+.service {
+    background: rgb(37, 37, 37);
+    font-size: 40px;
+}
+
+.text-center {
+    margin-top: -14rem;
+    text-align: center;
+}
+
+.text-center h2 {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.text-center h4 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: -20px;
+}
+
+.service-item {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25px, auto));
+    align-items: center;
+    gap: 2.2rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.service-box {
+    padding: 45px 30px;
+    background: gray;
+    border-radius: 0.8rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all ease .50s;
+}
+
+.service i {
+    font-size: 50px;
+    color: rgb(0, 0, 0); /* icon color */
+    margin-bottom: 10px;
+}
+
+.service h3 {
+    font-size: 23px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.service p {
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 1.5rem;
+    word-break: break-all; /* เพิ่มการแบ่งคำ */
+}
+
+.s-btnn {
+    display: inline-block;
+    padding: 9px 24px;
+    background: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 2rem;
+    transition: all ease .50s;
+}
+
+.s-btnn:hover {
+    transform: scale(1.1);
+    transition: .3s;
+    color: rgb(131, 15, 15);
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.service-box:hover {
+    transform: translateY(-8px);
+    border: 1px solid white;
+}
+
+/* Adjustments for responsiveness */
+@media screen and (max-width: 768px) {
+    .text-center {
+        margin-top: -13rem; 
+    }
+    .service-item {
+        grid-template-columns: repeat(1, minmax(0, 1fr)); /* เปลี่ยน grid เป็นการแสดงแนวตั้งแทน */
+    }
+    .service {
+        font-size: 24px; /* ลดขนาดฟอนต์ของบริการ */
+    }
+    .service-box {
+        padding: 15px; /* ลดการเสริมกล่องของบริการ */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .text-center {
+        margin-top: -13rem; 
+    }
+    .service-item {
+        grid-template-columns: repeat(1, minmax(0, 1fr)); /* เปลี่ยน grid เป็นการแสดงแนวตั้งแทน */
+    }
+    .service {
+        font-size: 24px; /* ลดขนาดฟอนต์ของบริการ */
+    }
+    .service-box {
+        padding: 15px; /* ลดการเสริมกล่องของบริการ */
+    }
+}
+
+
+/* end section */
+.end-section{
+    padding: 80px 19% 70px;
+    background: rgb(75, 75, 75);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.end-section h3{
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.end-section p{
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+.end-section i{
+    height: 40px;
+    width: 40px;
+    background: rgb(0, 0, 0);
+    color: white;
+    border: 2px solid rgb(255, 255, 255);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font: 20px;
+    border-radius: 50%;
+    margin:0 9px;
+    transition: all ease .50s;
+}
+.end-section i:hover{
+    transform: translateY(-5px);
+    background: rgb(131, 15, 15);
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.works ul{
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem 0rem;
+    gap: 1rem;
+}
+.heading{
+    margin-top: -200px;
+    text-align: center;
+    font-size: 30px;
+}
+.works ul li{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25px;
+    padding: 10px 4px;
+    color: #ffffff;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+.works ul li.active,.works ul li:hover{
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}
+
+
+.works .grid-wrapper{
+    width: 100%;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns:repeat(3,minmax(250px,1fr)) ;
+    grid-auto-rows: 250px;
+    grid-auto-flow: dense;
+}
+.grid-wrapper .image{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grid-wrapper .image img{
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+.grid-wrapper img{
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+ }
+.grid-wrapper .tall{
+    grid-row: span 2;
+}
+.grid-wrapper .wide{
+    grid-column: span 2;
+}
+.grid-wrapper .big{
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.grid-wrapper .wideg{
+    width: 100%; /* ขยายภาพให้เต็มความกว้างของ Grid */
+    object-position: center top; /* กำหนดให้ภาพโชว์ตำแหน่งด้านบนของ Grid */
+}
+.grid-wrapper .long{
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.works .grid-wrapper .image img {
+    transition: transform 0.3s ease-in-out; /* Add transition effect */
+}
+
+.works .grid-wrapper .image img:hover {
+    transform: scale(1.2); /* Scale up the image on hover */
+    z-index: 1; /* Ensure the hovered image appears on top */
+}
+@media (max-width: 800px) {
+
+    .container ul li{
+        padding-right: 10px;
+    }
+    .works .grid-wrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap; /* เพิ่ม flex-wrap เพื่อให้รูปภาพเรียงลงไปในบรรทัดถัดไปเมื่อไม่มีพื้นที่เพียงพอ */
+    }
+    .works .grid-wrapper .image {
+        width: calc(50% - 0.5rem); /* กำหนดความกว้างของภาพให้เป็น 33.33% ของขนาดของพื้นที่ทั้งหมด ลบด้วยระยะห่างของรูป */
+    }
+}
+
+footer {
+
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    text-align: center;
+    padding: 8px 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

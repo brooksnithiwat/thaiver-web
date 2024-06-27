@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="searchs.css">
+    <title>Sinbad Cosplay Website</title>
+    <link rel="icon" type="image/png" href="/root/samsung-logo-black-png-5.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <h1 class="top-text">Sinbad cosplay work</h1>
+    <!-- Search Input -->
+    <div class="centered-input">
+    <input type="text" id="searchInput" class="search-box" placeholder="Enter character name here">
+    <button onclick="search()" class="search-icon"><i class='bx bx-search-alt-2'></i></button>
+    </div> 
+    <!-- Buttons for anime titles -->
+    <button class="search-button" onclick="searchByTitle('Bungou Stray Dogs')">Bungou Stray Dogs</button>
+    <button class="search-button" onclick="searchByTitle('Blue Lock')">Blue Lock</button>
+    <button class="search-button" onclick="searchByTitle('Kuroko no basket')">Kuroko no basket</button>
+    <button class="search-button" onclick="searchByTitle('My hero Academia')">My hero Academia</button>
+    <button class="search-button" onclick="searchByTitle('Tokyo Ghoul')">Tokyo Ghoul</button>
+    <button class="search-button" onclick="searchByTitle('Tokyo Revengers')">Tokyo Revengers</button>
+    <button class="search-button" onclick="searchByTitle('Ouran host club')">Ouran host club</button>
+    <button class="search-button" onclick="searchByTitle('VTuber')">VTuber</button>
+    <button class="search-button" onclick="searchByTitle('Reborn')">Reborn</button>
+    <button class="search-button" onclick="searchByTitle('Attack on Titan')">Attack on Titan</button>
+    <button class="search-button" onclick="searchByTitle('Mashle magic and muscle')">Mashle magic and muscle</button>
+    <button class="search-button" onclick="searchByTitle('Genshin Impact')">Genshin Impact</button>
+    <button class="search-button" onclick="searchByTitle('Jujutsu Kaisen')">Jujutsu Kaisen</button>
+    <button class="search-button" onclick="searchByTitle('Black butler')">Black butler</button>
+    <button class="search-button" onclick="searchByTitle('Gintama')">Gintama</button>
+    <button class="search-button" onclick="searchByTitle('Haikyuu')">Haikyuu</button>
+
+    <!-- Container for search results -->
+    <div id="results"></div>
+
+    <script>
+        // Function to perform search based on input value
+        function search() {
+            var input = document.getElementById("searchInput").value.toLowerCase();
+            searchCharacters(input);
+        }
+
+        // Function to perform search based on anime title
+        function searchByTitle(animeTitle) {
+            searchCharacters(animeTitle.toLowerCase());
+        }
+
+        // Function to fetch and display search results
+        function searchCharacters(searchQuery) {
+            var resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = ""; // Clear previous results
+
+            // Fetch the CSV data
+            fetch('anime_characters.csv')
+                .then(response => response.text())
+                .then(data => {
+                    var rows = data.split('\n'); // Split data into rows
+                    var found = false;
+
+                    rows.forEach(row => {
+                        var columns = row.split(','); // Split row into columns
+                        var anime = columns[0].trim().toLowerCase(); // Get anime name and convert to lowercase
+                        var character = columns[1].trim().toLowerCase(); // Get character name and convert to lowercase
+                        var imageLink = columns[2].trim();
+
+                        // Check if either anime or character name matches the search query
+                        if (anime.includes(searchQuery) || character.includes(searchQuery)) {
+                            resultsDiv.innerHTML += `
+                            <div>
+                                <img src="${imageLink}" alt="${character}" class="result-image"> <!-- Add class for styling -->
+                                   <p class="character-name">${character}</p>
+                                   </div>
+
+                            `;
+                            found = true;
+                        }
+                    });
+
+                    if (!found) {
+                        resultsDiv.innerHTML = "<p>No results found.</p>";
+                    }
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+    </script>
+</body>
+</html>

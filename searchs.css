@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Monospace", "Courier New", monospace ,"Noto Sans Thai";
+    font-weight: lighter;
+}
+body{
+    background:url(bg.webp); 
+    color: aliceblue;
+    scroll-behavior: smooth;
+}
+@keyframes stretch {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+.top-text {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 40px;
+    position: relative;
+    overflow: hidden;
+    
+}
+.top-text::after {
+    align-items: center;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: auto; /* กำหนดความยาวเท่ากับข้อความ */
+    height: 2px; /* ความสูงของเส้น */
+    background-color: rgb(131, 15, 15); /* สีของเส้น */
+    animation: stretch 2s infinite; /* ใช้ animation ชื่อ stretch ความยาว 2 วินาที และเป็นการทำซ้ำไม่มีจำกัด */
+
+}
+.centered-input {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh; /* Adjust as needed */
+
+}
+.search-box{
+    border-radius: 20px;
+    text-indent: 20px;
+}
+.search-icon{
+    margin-top: -8px;
+    cursor: pointer;
+    font-size: 40px;
+    border-radius: 20px;
+    margin-left: 10px; 
+    transition: .5s;
+}
+.search-icon:hover{
+background-color:rgb(131, 15, 15);
+}
+.centered-input input[type="text"] {
+    width: 300px; /* Adjust as needed */
+    width: 400px; /* Increase the width */
+    height: 40px; /* Increase the height */
+    font-size: 18px; /* Increase the font size */
+    margin-bottom: 10px;
+}
+.search-button {
+    color: rgb(131, 15, 15);
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px; /* Padding */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 4px 4px 2px; /* Adjust margin-right here */
+    cursor: pointer;
+    border-radius: 8px; /* Rounded corners */
+    transition-duration: 0.4s;
+    margin-bottom: 30px;
+}
+
+.search-button:hover {
+    color: rgb(131, 15, 15);
+    font-weight: bold;
+    background-color: rgb(0, 0, 0);
+    border: 2px solid rgb(255, 255, 255);
+}
+
+/* Styles for search results */
+.result-image {
+    width: 490px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 20px;
+    margin: 0 auto;
+    display: block; 
+}
+.character-name {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 16px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 576px) {
+    .search-button {
+    margin-top: -5px;
+    padding: 10px 16px; /* Padding */ 
+}
+}
